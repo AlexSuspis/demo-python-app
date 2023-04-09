@@ -9,7 +9,7 @@ pool:
 
 jobs:
   job: Build
-    - displayName: 'Build job'
+  - displayName: 'Build job'
 
   steps: 
   - script: nosetests ./tests/test_app_endpoints.py
