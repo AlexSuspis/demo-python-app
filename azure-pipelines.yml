@@ -8,28 +8,15 @@ pool:
   vmImage: ubuntu-latest
 
 jobs:
-  job: Build
-  - displayName: 'Build job'
+  - job: Build
+    displayName: 'Build job'
 
-  steps: 
-  - script: nosetests ./tests/test_app_endpoints.py
-    displayName: 'Run tests'
+    steps: 
+    - script: nosetests ./tests/test_app_endpoints.py
+      displayName: 'Run tests'
 
-  - script: docker image build . -t 'alexsuspis/demo-python-azure-app'
-    displayName: 'Build docker image'
+    - script: docker image build . -t 'alexsuspis/demo-python-azure-app'
+      displayName: 'Build docker image'
 
-  - script: docker push 'alexsuspis/demo-python-azure-app' . -t 'alexsuspis/demo-python-azure-app'
-    displayName: 'Push docker image to alexsuspis/ dockerhub repo'
-
-
-      #  job: Release
-      #    - displayName: 'Release job'
-      #dependsOn: Build
-
-      #steps:
-      #  - script: docker pull 'alexsuspis/demo-python-azure-app'
-      #    displayName: 'Pull Docker image from dockerhub repo'
-
-
-
-
+    - script: docker push 'alexsuspis/demo-python-azure-app' . -t 'alexsuspis/demo-python-azure-app'
+      displayName: 'Push docker image to alexsuspis/ dockerhub repo'
