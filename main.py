@@ -1,11 +1,14 @@
-from bottle import route, run, template
+from bottle import Bottle, route, run, template
 
-@route('/')
+app = Bottle()
+
+@app.get('/')
 def home():
     return '<h1>Hello World!</h1>'
 
-@route('/hello/<name>')
+@app.get('/hello/<name>')
 def index(name):
     return template('<h2>Hello {{name}}!</h2>', name=name)
 
-run(host='localhost', port=8081)
+if __name__ == '__main__':
+    run(app, host='0.0.0.0', port=3000)
